@@ -10,27 +10,26 @@ const Signup = () => {
     });
   }
 
-  const handlesubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/Signup", {
-      method: 'POST',
+    await fetch("http://localhost:5000/Signup", {
+      method: "POST",
       body: JSON.stringify(form),
       headers: {
-        "Content-type": 'application/json'
-      }
-    });
-    const result = await response.json();
-    console.log(result);    
-    console.log(response);
-    if(result)
-    alert("succesfully signup");
-  else
-  alert("error")
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => {
+        res.status(200) ? alert("Success") : alert("Fail");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <div>
-      <form onSubmit={handlesubmit}>
+      <form onSubmit={handleSubmit}>
         <span>username </span>
         <input type="text" name='username' onChange={handlechange}></input>
         <span>password</span>
