@@ -51,6 +51,12 @@ code {
     visibility .3s ease-in .3s;
   transform: scale(.9);
 }
+.sliderimg{
+  width: 50%;
+  height: 500px;
+  object-fit: none;
+  
+}
 
 
 

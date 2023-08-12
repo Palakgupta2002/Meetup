@@ -4,11 +4,12 @@ import Signup  from "./signup";
 import Login from "./login";
 import Home from "./home";
 import Layout from "./Layout";
+import "./index.css";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <BrowserRouter >
+      <Routes >
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="Signup" element={<Signup />} />
