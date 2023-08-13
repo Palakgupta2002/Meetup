@@ -1,11 +1,5 @@
 import React from "react";
 import { useState } from "react";
-import image from './images (1).jpg'
-import AliceCarousel from 'react-alice-carousel';
-import "react-alice-carousel/lib/alice-carousel.css";
-
-
-
 
 export const Login = () => {
   const [user, setuser] = useState({});
@@ -34,27 +28,13 @@ export const Login = () => {
       });
   };
   return (
-    <div style={{display:"flex",
-                justifyContent:"center",
-                alignItems:"center",
-                
-                }} >
-      <div  style={{width: "30%", height: "auto", maxHeight: "700px", overflow: "hidden" }}>
-        {/* This is a slider image portion */}
-        <AliceCarousel autoPlay autoPlayInterval="3000">
-      <img src={image} className="sliderimg"/>
-      <img src={image} className="sliderimg"/>
-      <img src={image} className="sliderimg"/>
-      <img src={image} className="sliderimg"/>
-</AliceCarousel>
-
-      </div>
-      <div style={{
-                  backgroundColor:"rgb(167,197,107)"}}>
+    
+      <div style={{}}>
         {/* This is a Form  */}
         <p>Login</p>
       <form style={{}} onSubmit={handleSubmit}>
-        <span>username</span>
+       <label>Username</label>
+       <br></br>
         <input
           type="text"
           name="lusername"
@@ -62,7 +42,8 @@ export const Login = () => {
           onChange={handlechange}
         />
         <br></br>
-        <span>password</span>
+        <label>Username</label>
+       <br></br>
         <input
           type="text"
           name="lpassword"
@@ -71,9 +52,10 @@ export const Login = () => {
         />
         <br></br>
         <button type="submit">submit</button>
+        
       </form>
       </div>
-    </div>
+   
   );
 };
 export default Login;

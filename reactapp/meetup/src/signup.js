@@ -19,22 +19,49 @@ const Signup = () => {
         "Content-type": "application/json",
       },
     })
-      .then((res) => {
-        res.status(200) ? alert("Success") : alert("Fail");
+      .then(async (res) => {
+        const response = await res.json(); // Parse the response JSON
+  
+        if (res.status === 200) {
+          // Check the response content to determine success or fail
+          if (response === "User already exists") {
+            alert("User already exists");
+          } else {
+            alert("Success");
+          }
+        } else {
+          alert("Fail");
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
+  
+  
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <span>username </span>
-        <input type="text" name='username' onChange={handlechange}></input>
-        <span>password</span>
-        <input type='text' name='password' onChange={handlechange}></input>
-        <button type='submit'>submit</button>
+    <div style={{}}>
+      <form id="form"  onSubmit={handleSubmit}>
+        <label>Username</label>
+        <br></br>
+        <input className="inputbox" type="text" name='username' onChange={handlechange}></input>
+        <br></br>
+        <label>College</label>
+        <br></br>
+        <input className="inputbox" type='text' name='college' onChange={handlechange}></input>
+        <br></br>
+        <label>Email-id</label>
+        <br></br>
+        <input className="inputbox" type='email' name='email' onChange={handlechange}></input>
+        <br></br>
+        <label>Phone no.</label>
+        <br></br>
+        <input className="inputbox" type='tel' name='phone' onChange={handlechange}></input>
+        <br></br>
+        <label>Password</label><br></br>
+        <input className="inputbox" type='text' name='password' onChange={handlechange}></input>
+        <br></br>
+        <button className='button' type='submit'>submit</button>
       </form>
     </div>
   );
