@@ -4,8 +4,8 @@ const Layout = () => {
   return (
     < >
     <div >
-      <nav>
-        <ul>
+      <nav >
+        <ul style={{display:"flex",justifyContent:"space-evenly"}}>
           <li>
             <Link to="/">Home</Link>
           </li>

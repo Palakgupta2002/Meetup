@@ -37,24 +37,23 @@ export const Login = () => {
     <div style={{display:"flex",
                 justifyContent:"center",
                 alignItems:"center",
-                marginTop:"100px",
+                
                 }} >
-      <div style={{width:"180px"}}>
+      <div  style={{width: "30%", height: "auto", maxHeight: "700px", overflow: "hidden" }}>
         {/* This is a slider image portion */}
         <AliceCarousel autoPlay autoPlayInterval="3000">
-      <img  src={image} className="sliderimg"/>
+      <img src={image} className="sliderimg"/>
       <img src={image} className="sliderimg"/>
       <img src={image} className="sliderimg"/>
       <img src={image} className="sliderimg"/>
 </AliceCarousel>
 
       </div>
-      <div style={{marginTop:"-80px"
-                  ,padding:"30px",
+      <div style={{
                   backgroundColor:"rgb(167,197,107)"}}>
         {/* This is a Form  */}
         <p>Login</p>
-      <form style={{padding:"90px"}} onSubmit={handleSubmit}>
+      <form style={{}} onSubmit={handleSubmit}>
         <span>username</span>
         <input
           type="text"
