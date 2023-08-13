@@ -15,7 +15,11 @@ async function main() {
 // Define schema first
 const userSchema = new mongoose.Schema({
   username: String,
-  password: String
+  password: String,
+  college:String,
+  email:String,
+  phone:String,
+
 });
 
 // Create model using schema
@@ -31,17 +35,31 @@ server.get('/',(res,req)=>{
 //This is for Signup
 server.post('/Signup', async (req, res) => {
   try {
-    let newUser = new User();
-    newUser.username = req.body.username;
-    newUser.password = req.body.password;
-    const doc = await newUser.save();
-    res.json(req.body);
-  
+    const username = req.body.username;
+    
+    // Check if the user already exists in the database
+    const user = await User.findOne({ username: username });
+    
+    if (user) {
+      res.send("User already exists");
+    } else {
+      // Create a new user and save to the database
+      let newUser = new User();
+      newUser.username = req.body.username;
+      newUser.password = req.body.password;
+      newUser.college = req.body.college;
+      newUser.email = req.body.email;
+      newUser.phone = req.body.phone;
+      
+      const doc = await newUser.save();
+      res.json(req.body);
+    }
   } catch (error) {
     console.error("Error inserting user data:", error);
     res.status(500).json({ error: "An error occurred" });
   }
 });
+
 //This is for Login
 // This is for Login
 server.post('/Login', async (req, res) => {
@@ -62,6 +80,19 @@ server.post('/Login', async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
+//This is for to profiles
+server.get('/Profiles',async(req,res)=>{
+  try{
+      const users=await User.find({},'username');
+      res.status(200).json(users);
+
+  } 
+  catch(err){
+    console.error("Error fetching profiles:", err);
+    res.status(500).json({ error: "An error occurred" });
+
+  }
+})
 
 
 
