@@ -1,27 +1,38 @@
 import { Outlet, Link } from "react-router-dom";
+import { useState } from "react";
 
 const Layout = () => {
-  return (
-    < >
-    <div >
-      <nav >
-        <ul style={{display:"flex",justifyContent:"space-evenly"}}>
+  
+ const loggedin=localStorage.getItem("checklogin");
+    return (
+      <>
+      {
+        loggedin?<div><nav> 
           <li>
-            <Link to="/">Home</Link>
+              <Link to="/home">Home</Link>
           </li>
-          <li>
-            <Link to="/Signup">Signup</Link>
-          </li>
-          <li>
-            <Link to="/Login">Login</Link>
-          </li>
-        </ul>
-      </nav>
+            </nav></div>:
+           <div>
+        <nav>
+          <ul style={{ display: "flex", justifyContent: "space-evenly" }}>
+            <li>
+              <Link to="/SignUp">Signup</Link>
+            </li>
+            <li>
+              <Link to="/Login" >Login</Link>
+            </li>
+          </ul>
+        </nav>
+        <Outlet />
       </div>
+        
 
-      <Outlet />
-    </>
-  )
-};
+      }
+      </>
+    );
+  }
+  
+    
+ 
 
 export default Layout;

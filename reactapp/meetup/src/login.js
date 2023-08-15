@@ -2,7 +2,10 @@ import React from "react";
 import { useState } from "react";
 
 export const Login = () => {
+  
   const [user, setuser] = useState({});
+  
+
   function handlechange(e) {
     setuser({
       ...user,
@@ -21,7 +24,14 @@ export const Login = () => {
       },
     })
       .then((res) => {
-       res.status===200?alert("login succesfully"):alert("Fail")
+      if(res.status===200){
+        localStorage.setItem("checklogin",true);
+        
+      }
+      else{
+        localStorage.setItem("checklogin",true);
+        alert("npt correct");
+      }
       })
       .catch((err) => {
         console.log(err);

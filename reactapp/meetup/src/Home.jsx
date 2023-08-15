@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export const Home = () => {
+ const Home = () => {
   const [profiles, setProfiles] = useState([]);
 
   useEffect(() => {
@@ -20,6 +20,7 @@ export const Home = () => {
         {/* Display profiles */}
         <h2>User Profiles</h2>
         <ul>
+          
           {profiles.map((profile, index) => (
             <li key={index}>{profile.username}</li>
           ))}
