@@ -41,7 +41,7 @@ server.post('/Signup', async (req, res) => {
     const user = await User.findOne({ username: username });
     
     if (user) {
-      res.send("User already exists");
+      res.send("True");
     } else {
       // Create a new user and save to the database
       let newUser = new User();
