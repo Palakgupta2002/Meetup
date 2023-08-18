@@ -1,8 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-
-
-const SignUp = () => {
+const Signup = () => {
+ 
     const [form,setform]=useState({});
     const handlechange=(e)=>{
         setform({
@@ -24,20 +23,21 @@ const SignUp = () => {
         const response=res.json();
         if (res.status === 200) {
             if (response === "True") {
+            
               alert("User already exists");
             } else {
-              
-             
+            
             }
           } else {
             alert("Fail");
           }
       }).catch((err) => {
         console.log(err);
-      }); 
+      });
 
     }
     return (
+
         <div style={{}}>
           <form id="form"  onSubmit={handleSubmit}>
             <label>Username</label>
@@ -61,8 +61,10 @@ const SignUp = () => {
             <br></br>
             <button className='button' type='submit'>submit</button>
           </form>
+
         </div>
+
       );
 }
 
-export default SignUp
+export default Signup
