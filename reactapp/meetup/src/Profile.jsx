@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 
-const  Profile=()=> {
+function Profile() {
+  const [userProfile, setUserProfile] = useState(null);
+  useEffect(() => {
+    // Fetch the user's profile data
+    fetch("http://localhost:5000/Profile")
+      .then((response) => response.json())
+      .then((data) => {
+        setUserProfile(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching profiles:", error);
+      });
+  }, []);
+
   return (
-    <div>Profile Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est voluptates ut totam maiores neque. Provident nostrum, suscipit maxime laborum dolorem porro sed possimus, reiciendis odit facilis voluptates harum corporis incidunt!</div>
-  )
+    <div>
+      <button>See Profiles</button>
+      {userProfile && (
+        <div>
+          <h2>User Profile</h2>
+          <p>Username: {userProfile.username}</p>
+          <p>College: {userProfile.college}</p>
+          <p>Email: {userProfile.email}</p>
+          <p>Phone: {userProfile.phone}</p>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default Profile
+export default Profile;

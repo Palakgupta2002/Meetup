@@ -1,0 +1,23 @@
+.signupBox {
+  display: flex;
+  padding: 50px;
+  height: 84.6vh;
+  align-items: center;
+}
+.imageSection{
+    background-color: blue;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.formSection{
+    background-color: red;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.signupBox > div {
+  height: 80vh;
+  width: 50%;
+}
+body {
+  margin: 0;
+}
