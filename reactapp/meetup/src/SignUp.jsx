@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import "./Signup.css";
-import background from "./download.jpg";
+
 const Signup = () => {
   const [form, setform] = useState({});
   const handlechange = (e) => {
@@ -37,13 +37,13 @@ const Signup = () => {
   return (
     <div
       style={{
-        backgroundImage: `url(${background})`,
+        backgroundColor:"transparent",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
       }}
       className="signupBox"
     >
-      <div className="imageSection"></div>
+      
       <div className="formSection">
         <form id="form" onSubmit={handleSubmit}>
           <label>Username</label>

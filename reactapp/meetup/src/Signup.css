@@ -5,18 +5,19 @@
   align-items: center;
 }
 .imageSection{
-    background-color: blue;
+    background-color: #5ecae3;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
 }
 .formSection{
-    background-color: red;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    background-color: transparent;
+    border: 15px;
+    border-radius: 10px;
+   
 }
 .signupBox > div {
   height: 80vh;
-  width: 50%;
+  width: 100%;
 }
 body {
   margin: 0;

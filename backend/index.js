@@ -88,12 +88,12 @@ server.get("/Profiles", async (req, res) => {
 });
 
 server.get("/Profile", async (req, res) => {
-  console.log(req.body);
+  console.log(emaill);
   try {
     const user = await User.findOne({ email: emaill });
     if (user) {
       res.status(200).json(user);
-      console.log(user);
+      
     } else {
       res.status(404).json({ error: "User not found" });
     }
@@ -102,6 +102,8 @@ server.get("/Profile", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
 });
+
+
 
 server.use(express.json());
 
@@ -134,6 +136,13 @@ server.post("/CreatePost", upload.single("image"), async (req, res) => {
     return res.status(500).json({ error: "An error occurred" });
   }
 });
+//Delete a Post
+// server.get("/DeletePost",async(req,res)=>{
+//   try{
+//     const user=await User.deleteOne()
+//   }
+// }) 
+
 
 server.use((req, res) => {
   res.status(404).json({ error: "Not found" });

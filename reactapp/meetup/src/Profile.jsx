@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { EditOutlined } from '@ant-design/icons'
+
+
+
 
 function Profile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -13,17 +17,18 @@ function Profile() {
         console.error("Error fetching profiles:", error);
       });
   }, []);
+  //Update a Profile
 
   return (
     <div>
-      <button>See Profiles</button>
+      {console.log(setUserProfile)}
       {userProfile && (
         <div>
           <h2>User Profile</h2>
-          <p>Username: {userProfile.username}</p>
-          <p>College: {userProfile.college}</p>
-          <p>Email: {userProfile.email}</p>
-          <p>Phone: {userProfile.phone}</p>
+          <p>Username: {userProfile.username}<EditOutlined/></p>
+          <p>College: {userProfile.college}<EditOutlined/></p>
+          <p>Email: {userProfile.email}<EditOutlined/></p>
+          <p>Phone: {userProfile.phone}<EditOutlined/></p>
         </div>
       )}
     </div>

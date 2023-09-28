@@ -40,7 +40,7 @@ code {
   margin-left: -210px;
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: rgba(255,255,255,.3);
+  background-color: rgba(196, 97, 26, 0.3);
   height: 640px;
   width: 600px;
   color: white;
@@ -113,6 +113,10 @@ label{
   letter-spacing: 3px;
 
   transition: background-color .4s ease-out;
+}
+ .ant-modal-content {
+  background-color:#30cfb2 !important;
+  
 }
 
 
