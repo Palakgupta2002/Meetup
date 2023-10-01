@@ -41,19 +41,32 @@ const upload = multer();
 //This is for Signup
 server.post("/Signup", async (req, res) => {
   try {
+    const existingUser = await User.findOne({ email: req.body.email });
+
+    if (existingUser) {
+      console.log("User exists");
+      return res.status(400).json({ error: "Email already exists" });
+    }
+
     const newUser = new User();
     newUser.username = req.body.username;
     newUser.password = req.body.password;
     newUser.college = req.body.college;
     newUser.email = req.body.email;
     newUser.phone = req.body.phone;
+
+    // Save the new user to the database
     const doc = await newUser.save();
-    return res.json(req.body);
+
+    // Return a success response
+    console.log("Successfully registered");
+    return res.status(200).json({ message: "User registered successfully" });
   } catch (error) {
     console.error("Error inserting user data:", error);
     return res.status(500).json({ error: "An error occurred" });
   }
 });
+
 
 //This is for Login
 // This is for Login
