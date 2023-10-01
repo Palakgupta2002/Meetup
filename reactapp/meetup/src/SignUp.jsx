@@ -1,102 +1,126 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Form, Input, Button, message } from "antd";
 import "./Signup.css";
+import Forgetpas from "./Forgetpas";
 
-const Signup = () => {
-  const [form, setform] = useState({});
-  const handlechange = (e) => {
-    setform({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    await fetch("http://localhost:5000/Signup", {
-      method: "POST",
-      body: JSON.stringify(form),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => {
-        const response = res.json();
-        if (res.status === 200) {
-          if (response === "True") {
-            alert("User already exists");
-          } else {
-          }
-        } else {
-          alert("Fail");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+const Signup = ({ setIsModalOpen }) => {
+  const [form] = Form.useForm();
+
+  const handleSubmit = async (values) => {
+    try {
+      const response = await fetch("http://localhost:5000/Signup", {
+        method: "POST",
+        body: JSON.stringify(values),
+        headers: {
+          "Content-type": "application/json",
+        },
       });
+
+      if (response.status === 200) {
+        const data = await response.json();
+        if (data.message === "User registered successfully") {
+          message.success("Signup successful");
+          setIsModalOpen(false);
+          // Reset the form
+          form.resetFields();
+        } else {
+          message.error("User already exists");
+        }
+      } else {
+        message.error("Failed to register user");
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
   return (
-    <div
-      style={{
-        backgroundColor:"transparent",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-      }}
-      className="signupBox"
-    >
-      
+    <div className="signupBox">
       <div className="formSection">
-        <form id="form" onSubmit={handleSubmit}>
-          <label>Username</label>
-          <br></br>
-          <input
-            className="inputbox"
-            type="text"
+        <Form form={form} onFinish={handleSubmit}>
+          <Form.Item
+            label="Username"
             name="username"
-            onChange={handlechange}
-          ></input>
-          <br></br>
-          <label>College</label>
-          <br></br>
-          <input
-            className="inputbox"
-            type="text"
+            rules={[
+              {
+                required: true,
+                message: "Username is required",
+              },
+            ]}
+          >
+            <Input className="inputbox" />
+          </Form.Item>
+
+          <Form.Item
+            label="College"
             name="college"
-            onChange={handlechange}
-          ></input>
-          <br></br>
-          <label>Email-id</label>
-          <br></br>
-          <input
-            className="inputbox"
-            type="email"
+            rules={[
+              {
+                required: true,
+                message: "College name is required",
+              },
+            ]}
+          >
+            <Input className="inputbox" />
+          </Form.Item>
+
+          <Form.Item
+            label="Email-id"
             name="email"
-            onChange={handlechange}
-          ></input>
-          <br></br>
-          <label>Phone no.</label>
-          <br></br>
-          <input
-            className="inputbox"
-            type="tel"
+            rules={[
+              {
+                required: true,
+                message: "Email is required",
+              },
+              {
+                type: "email",
+                message: "Invalid email address",
+              },
+            ]}
+          >
+            <Input className="inputbox" />
+          </Form.Item>
+
+          <Form.Item
+            label="Phone no."
             name="phone"
-            onChange={handlechange}
-          ></input>
-          <br></br>
-          <label>Password</label>
-          <br></br>
-          <input
-            className="inputbox"
-            type="text"
+            rules={[
+              {
+                required: true,
+                message: "Phone number is required",
+              },
+              {
+                pattern: /^\d{10}$/,
+                message: "Invalid phone number",
+              },
+            ]}
+          >
+            <Input className="inputbox" />
+          </Form.Item>
+
+          <Form.Item
+            label="Password"
             name="password"
-            onChange={handlechange}
-          ></input>
-          <br></br>
-          <button className="button" type="submit">
-            submit
-          </button>
-        </form>
+            rules={[
+              {
+                required: true,
+                message: "Password is required",
+              },
+            ]}
+          >
+            <Input.Password className="inputbox" />
+          </Form.Item>
+
+          <Form.Item>
+            <Button className="button" type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+        <Forgetpas />
       </div>
     </div>
   );
 };
+
 export default Signup;

@@ -93,6 +93,9 @@ body {
 }
 .ant-modal-content {
   background: linear-gradient(to left, #d1a53f, #d3a61d, #dbb313, #d6be1d, #eedf05) !important;
+  border: 2px solid blue !important;
+  
+  
 }
 #nav {
   display: flex;
@@ -103,5 +106,23 @@ body {
 }
 iframe{
   border:"2px solid red"
+}
+
+.signupbox>.ant-modal>.ant-modal-content{
+  border: 2px solid red;
+  
+}
+.signupcontent{
+  display: flex;
+  align-items: center;
+  border: 2px solid blue;
+}
+.imagesection{
+  width: 350px;
+  height: 100px;
+  border: 2px solid red;
+}
+.ant-modal-footer{
+  display: none !important;
 }
 

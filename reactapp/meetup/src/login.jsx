@@ -40,7 +40,7 @@ export const Login = () => {
     <div>
       {/* This is a Form  */}
       <p>Login</p>
-      <form onSubmit={handleSubmit}>
+      <form style={{width:"100%"}} onSubmit={handleSubmit}>
         <label>Username</label>
         <br></br>
         <input
